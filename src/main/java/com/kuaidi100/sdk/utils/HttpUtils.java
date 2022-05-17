@@ -36,7 +36,7 @@ public class HttpUtils {
      * @param url     请求url
      * @return
      */
-    public static HttpResult doPost(String url,  Object obj,int connectTimeout,int socketTimeout) {
+    public static HttpResult doPost(String url,  Object obj,int connectTimeout,int socketTimeout, Map<String, String> headers) {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         CloseableHttpResponse resp = null;
 
@@ -44,7 +44,9 @@ public class HttpUtils {
         try {
             Map<String, String> params = ObjectToMapUtils.objectToMap(obj);
             HttpPost httpPost = new HttpPost(url);
-
+            for (Map.Entry<String, String> header : headers.entrySet()) {
+                httpPost.addHeader(header.getKey(),header.getValue());
+            }
             RequestConfig requestConfig = RequestConfig.custom()
                     .setConnectTimeout(connectTimeout)
                     .setSocketTimeout(socketTimeout).build();

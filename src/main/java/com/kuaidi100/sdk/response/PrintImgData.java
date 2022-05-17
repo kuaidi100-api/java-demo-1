@@ -2,9 +2,6 @@ package com.kuaidi100.sdk.response;
 
 import lombok.Data;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * @Author: api.kuaidi100.com
  * @Date: 2020-07-17 18:52

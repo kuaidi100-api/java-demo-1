@@ -1,6 +1,7 @@
 package com.kuaidi100.sdk.request.internationalshipment;
 
 import lombok.Data;
+
 import java.util.Date;
 import java.util.List;
 
