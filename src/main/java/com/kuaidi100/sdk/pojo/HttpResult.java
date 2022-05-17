@@ -20,7 +20,6 @@ public class HttpResult {
 
     public HttpResult() {
     }
-
     public HttpResult(int status, String body, String error) {
         this.status = status;
         this.body = body;
