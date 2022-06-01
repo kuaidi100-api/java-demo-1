@@ -51,8 +51,10 @@ public class RealTimeTracking {
 				"\"area_show\": 1," +
 				"\"order\": \"desc\"" +
 				"}";
-
+		//MD5  encryption
 		String signature = MD5Utils.encode(param + API_KEY + SECRET);
+		//SHA256  encryption
+		//String signature = SHA256Utils.encode(param + API_KEY + SECRET);
 		return this.post(param,signature);
 	}
 	
@@ -147,5 +149,31 @@ class MD5Utils {
 			return null;
 		}
 	}
+}
+class SHA256Utils{
+	public static String encode(String str) {
+        MessageDigest messageDigest;
+        String encodeStr = "";
+        try {
+            messageDigest = MessageDigest.getInstance("SHA-256");
+            messageDigest.update(str.getBytes(StandardCharsets.UTF_8));
+            encodeStr = byte2Hex(messageDigest.digest());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return encodeStr;
+    }
+    private static String byte2Hex(byte[] bytes) {
+        StringBuilder stringBuilder = new StringBuilder();
+        String temp;
+        for (byte aByte : bytes) {
+            temp = Integer.toHexString(aByte & 0xFF);
+            if (temp.length() == 1) { 
+                stringBuilder.append("0");
+            }
+            stringBuilder.append(temp);
+        }
+        return stringBuilder.toString();
+    }
 }
 
